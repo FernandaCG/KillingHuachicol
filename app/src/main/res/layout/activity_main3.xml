@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="dsd.escom.ipn.ficam.killinghuachicol.Main3Activity">
+    tools:context="dsd.escom.ipn.ficam.killinghuachicol.DenunciaActivity">
 
     <fragment
         android:id="@+id/fragmentGoogleMaps"
@@ -19,8 +19,35 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Titulo" />
+
+        <EditText
+            android:id="@+id/txtDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:lines="2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -28,7 +55,7 @@
             android:text="Descripción" />
 
         <EditText
-            android:id="@+id/txtDescripcion"
+            android:id="@+id/txtDescripcion1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

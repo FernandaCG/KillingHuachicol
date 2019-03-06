@@ -1,7 +1,17 @@
 package dsd.escom.ipn.ficam.killinghuachicol;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +20,25 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends SupportMapFragment implements OnMapReadyCallback {
+import java.util.Random;
 
-    private GoogleMap mMap;
+public class MapsActivity extends  SupportMapFragment implements OnMapReadyCallback
+{
+
+    private LocationManager locationManager = null;
     private LatLng currentLocation = new LatLng(19.432608, -99.133208);
+    private boolean moveCameraCurrentLocation = true;
+    private static final int DEFAULT_ZOOM_LEVEL = 19;
+    private int timeUpdateLocation = 2000;
+    private float distanceUpateLocation = (float)0.05;
+    private GoogleMap googleMap;
 
-    /*@Override
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
@@ -28,20 +48,6 @@ public class MapsActivity extends SupportMapFragment implements OnMapReadyCallba
         mapFragment.getMapAsync(this);
     }
 */
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        getMapAsync(this);
-        return rootView;
-    }
-
-    public void moveCamera(LatLng newLocation)
-    {
-        if (this.mMap == null)
-            return;
-        this.mMap.moveCamera(CameraUpdateFactory.newLatLng(newLocation));
-    }
 
     /**
      * Manipulates the map once available.
@@ -54,11 +60,14 @@ public class MapsActivity extends SupportMapFragment implements OnMapReadyCallba
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        this.googleMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(19.432608, -99.133208);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Mexico City"));
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
+
+
 }
